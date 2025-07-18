@@ -18,7 +18,8 @@ public class VistaConsola implements Ivista
         System.out.println("1.Listar clientes");
         System.out.println("2.Agregar cliente");
         System.out.println("3.Modificar cliente");
-        System.out.println("4. Eliminar cliente");
+        System.out.println("4.Eliminar cliente");
+        System.out.println("5.Finalizar Programa");
     }
 
     @Override
@@ -69,7 +70,6 @@ public class VistaConsola implements Ivista
         int id = -1;
         try
         {
-            System.out.println("Digite el id: ");
             id = Integer.parseInt(lector.readLine());
 
         } catch (IOException | NumberFormatException e)
@@ -90,6 +90,28 @@ public class VistaConsola implements Ivista
     public void mostrarError(String mensaje)
     {
         System.out.println("Error: " + mensaje);
+    }
+
+    @Override
+    public int leerOpcion()
+    {
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        try
+        {
+            int opc;
+            do
+            {
+                System.out.print("Digite una opcion: ");
+                opc = Integer.parseInt(lector.readLine());
+                if (opc < 1 || opc > 5) System.out.println("Digite una opcion valida (1-5): ");
+
+            } while (opc < 1 || opc > 5);
+            return opc;
+        } catch (IOException | NumberFormatException e)
+        {
+            System.out.println("Ocurrio un error al leer la opcion: " + e.getMessage());
+        }
+        return 0;
     }
 
 }
